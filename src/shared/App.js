@@ -1,3 +1,3 @@
 import React from "react";
 
-export const App = () => <div>Hello World</div>;
+export const App = ({ text }) => <div>{text}</div>;
