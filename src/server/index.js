@@ -1,22 +1,39 @@
 import express from "express";
 import React from "react";
 import ReactDOM from "react-dom/server";
+import { StaticRouter, matchPath } from "react-router-dom";
 import serialize from "serialize-javascript";
-import fetch from "isomorphic-fetch";
 
 import { App } from "../shared/App";
+import { routes } from "../shared/routes";
+
+const paths = {
+  "/": "home",
+  "/statistics": "statistics",
+};
 
 const app = express();
 
 app.use(express.static("dist"));
 
-app.get("*", (req, res) => {
-  fetch(
-    "https://api.covid19api.com/total/country/belarus?from=2020-06-01T00:00:00Z&to=2020-11-11T00:00:00Z"
-  )
-    .then((res) => res.json())
+app.get(["/", "/statistics/**"], (req, res, next) => {
+  const activeRoute = routes.find((route) => matchPath(req.url, route)) || {};
+
+  const promise = activeRoute.fetchInitialData
+    ? activeRoute.fetchInitialData(req.path)
+    : Promise.resolve();
+
+  promise
     .then((data) => {
-      const html = ReactDOM.renderToString(<App data={data} />);
+      const html = ReactDOM.renderToString(
+        <StaticRouter location={req.url} context={{ data }}>
+          <App />
+        </StaticRouter>
+      );
+
+      const initialData = {
+        // [paths[req.path]]: data,
+      };
 
       res.send(`
         <!DOCTYPE html>
@@ -25,14 +42,16 @@ app.get("*", (req, res) => {
             <title>React SSR demo</title>
             <script src="/bundle.js" defer></script>
             <link href="/main.css" rel="stylesheet">
-            <script>window.__INITIAL_DATA__ = ${serialize(data)}</script>
+            <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@500&display=swap" rel="stylesheet">
+            <script>window.__INITIAL_DATA__ = ${serialize(initialData)}</script>
           </head>
           <body>
             <div id="root">${html}</div>
           </body>
         </html>
       `);
-    });
+    })
+    .catch(next);
 });
 
 app.listen(3000, () => {
