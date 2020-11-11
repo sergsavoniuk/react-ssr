@@ -1,3 +1,9 @@
 import React from "react";
 
-export const App = ({ text }) => <div>{text}</div>;
+import { CovidStatistics } from "./CovidStatistics";
+
+export const App = ({ data }) => (
+  <>
+    <CovidStatistics data={data} />
+  </>
+);

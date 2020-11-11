@@ -4,6 +4,6 @@ import ReactDOM from "react-dom";
 import { App } from "../shared/App";
 
 ReactDOM.hydrate(
-  <App text={window.__INITIAL_DATA__} />,
+  <App data={window.__INITIAL_DATA__} />,
   document.getElementById("root")
 );
