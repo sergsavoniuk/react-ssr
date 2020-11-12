@@ -1,4 +1,4 @@
-.covid-statistics__container {
+.covid-statistics__wrapper {
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -7,7 +7,7 @@
   margin-top: 15px;
 }
 
-.covid-statistics__container > a[href="/"] {
+.covid-statistics__wrapper > a[href="/"] {
   position: absolute;
   top: 10px;
   left: 10px;
@@ -17,27 +17,48 @@
   text-decoration: none;
 }
 
-.covid-statistics__container > div {
+.covid-statistics__container {
   display: flex;
+  flex-direction: column;
   justify-content: center;
   width: 100%;
-  padding: 0 50px;
+  padding: 0 10px;
   box-sizing: border-box;
-  /* max-width: 800px; */
 }
 
-.covid-statistics__container > div > div:first-of-type {
+@media only screen and (min-width: 768px) {
+  .covid-statistics__container {
+    flex-direction: row;
+    padding: 0 50px;
+  }
+}
+
+.covid-statistics__data-container {
   width: 100%;
-  max-width: 300px;
   margin-right: 50px;
+  margin-bottom: 50px;
 }
 
-.covid-statistics__container > div > div:nth-of-type(2) {
+@media only screen and (min-width: 768px) {
+  .covid-statistics__data-container {
+    max-width: 300px;
+  }
+}
+
+.covid-statistics__visualization-container {
   width: calc(100% - 400px);
+}
+
+@media only screen and (max-width: 768px) {
+  .covid-statistics__visualization-container {
+    width: 100%;
+    margin-bottom: 50px;
+  }
 }
 
 .covid-statistics__header {
   margin-top: 0;
+  text-align: center;
   font-size: 2.5rem;
   letter-spacing: 5px;
 }

@@ -1,6 +1,8 @@
 body {
+  height: 100vh;
   padding: 0;
   margin: 0;
+  background-color: #111;
   font-family: "Barlow", sans-serif;
 }
 
@@ -11,9 +13,14 @@ body {
   height: 100vh;
   padding: 30px;
   margin: 0;
-  background-color: #111;
   color: #fff;
   box-sizing: border-box;
+}
+
+@media only screen and (max-width: 768px) {
+  .main {
+    padding: 30px 10px;
+  }
 }
 
 ::-webkit-scrollbar {

@@ -13,12 +13,20 @@
 .home-page__title {
   font-size: 3.75rem;
   letter-spacing: 5px;
+  text-align: center;
 }
 
 .home-page__search-form {
   display: flex;
   justify-content: center;
   width: 100%;
+  box-sizing: border-box;
+}
+
+@media only screen and (max-width: 768px) {
+  .home-page__search-form {
+    padding: 0 10px;
+  }
 }
 
 .home-page__search-form > a {

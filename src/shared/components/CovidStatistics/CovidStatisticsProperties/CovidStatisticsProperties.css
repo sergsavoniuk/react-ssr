@@ -1,0 +1,72 @@
+.covid-statistics-propertiess__container {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  padding: 20px;
+  margin-bottom: 20px;
+  border: 2px solid #dcdcdc;
+  border-radius: 5px;
+}
+
+.covid-statistics-propertiess__container label {
+  display: block;
+  position: relative;
+  padding: 0 25px;
+  margin-bottom: 12px;
+  cursor: pointer;
+  font-size: 1rem;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.covid-statistics-propertiess__container label input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+
+.covid-statistics-propertiess__container .checkmark {
+  position: absolute;
+  top: 3px;
+  left: 0;
+  height: 16px;
+  width: 16px;
+  background-color: #eee;
+}
+
+.covid-statistics-propertiess__container label:hover input ~ .checkmark {
+  background-color: #ccc;
+}
+
+.covid-statistics-propertiess__container label input:checked ~ .checkmark {
+  background-color: #2196f3;
+}
+
+.covid-statistics-propertiess__container .checkmark:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+
+.covid-statistics-propertiess__container
+  label
+  input:checked
+  ~ .checkmark:after {
+  display: block;
+}
+
+.covid-statistics-propertiess__container label .checkmark:after {
+  left: 6px;
+  top: 2px;
+  width: 3px;
+  height: 7px;
+  border: solid white;
+  border-width: 0 3px 3px 0;
+  -webkit-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  transform: rotate(45deg);
+}

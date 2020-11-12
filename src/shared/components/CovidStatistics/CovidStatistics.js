@@ -4,6 +4,10 @@ import { useParams, Link } from "react-router-dom";
 import { CovidStatisticsList } from "./CovidStatisticsList";
 import { CovidStatisticsPeriods } from "./CovidStatisticsPeriods";
 import { CovidStatisticsChart } from "./CovidStatisticsChart";
+import {
+  CovidStatisticsProperties,
+  options as statisticsProperties,
+} from "./CovidStatisticsProperties";
 
 import "./CovidStatistics.css";
 
@@ -11,6 +15,7 @@ export const CovidStatistics = ({ fetchInitialData, staticContext }) => {
   const { country } = useParams();
 
   const [period, setPeriod] = useState("week");
+  const [properties, setProperties] = useState(statisticsProperties);
   const [statistics, setStatistics] = useState(
     __isBrowser__ ? window.__INITIAL_DATA__?.statistics : staticContext.data
   );
@@ -28,7 +33,7 @@ export const CovidStatistics = ({ fetchInitialData, staticContext }) => {
   }, [country, period, fetchNewStatistics]);
 
   return (
-    <div className="covid-statistics__container">
+    <div className="covid-statistics__wrapper">
       {!statistics ? (
         <h3>Loading ...</h3>
       ) : (
@@ -37,16 +42,23 @@ export const CovidStatistics = ({ fetchInitialData, staticContext }) => {
           <h1 className="covid-statistics__header">
             Covid-19 Statistics for {statistics.country}
           </h1>
-          <div>
-            <div>
+          <div className="covid-statistics__container">
+            <div className="covid-statistics__data-container">
               <CovidStatisticsPeriods
                 value={period}
                 onChange={(value) => setPeriod(value)}
               />
               <CovidStatisticsList data={statistics.data} />
             </div>
-            <div>
-              <CovidStatisticsChart data={statistics.data} />
+            <div className="covid-statistics__visualization-container">
+              <CovidStatisticsProperties
+                values={properties}
+                onChange={(value) => setProperties(value)}
+              />
+              <CovidStatisticsChart
+                properties={properties}
+                data={statistics.data}
+              />
             </div>
           </div>
         </>

@@ -1,0 +1,8 @@
+.covid-statistics-char__container {
+  height: calc(100% - 400px);
+  min-height: 650px;
+  padding: 10px;
+  border: 2px solid #dcdcdc;
+  border-radius: 5px;
+  box-sizing: border-box;
+}
