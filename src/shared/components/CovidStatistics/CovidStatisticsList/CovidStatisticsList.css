@@ -1,0 +1,22 @@
+.covid-statistics__list {
+  border: 2px solid #dcdcdc;
+  border-right: none;
+  border-radius: 5px;
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+.covid-statistics__card {
+  padding-top: 10px;
+  padding-left: 10px;
+  box-sizing: border-box;
+  border-bottom: 1px solid #dcdcdc;
+}
+
+.covid-statistics__card-item {
+  padding: 3px;
+}
+
+.covid-statistics__card-item > span:first-of-type {
+  color: #888;
+}

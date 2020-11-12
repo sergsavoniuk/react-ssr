@@ -3,6 +3,8 @@ import { FixedSizeList as List } from "react-window";
 
 import { CovidStatisticsListItem } from "./CovidStatisticsListItem";
 
+import "./CovidStatisticsList.css";
+
 export const CovidStatisticsList = ({ data }) => {
   return (
     <div className="covid-statistics__list">

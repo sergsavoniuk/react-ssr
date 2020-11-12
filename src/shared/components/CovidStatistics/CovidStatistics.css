@@ -17,10 +17,23 @@
   text-decoration: none;
 }
 
-.covid-statistics__container > div:first-of-type {
+.covid-statistics__container > div {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  padding: 0 50px;
+  box-sizing: border-box;
+  /* max-width: 800px; */
+}
+
+.covid-statistics__container > div > div:first-of-type {
   width: 100%;
   max-width: 300px;
-  margin: 30px auto;
+  margin-right: 50px;
+}
+
+.covid-statistics__container > div > div:nth-of-type(2) {
+  width: calc(100% - 400px);
 }
 
 .covid-statistics__header {
@@ -31,27 +44,4 @@
 
 .covid-statistics__header > span {
   text-transform: capitalize;
-}
-
-.covid-statistics__list {
-  border: 2px solid #dcdcdc;
-  border-right: none;
-  border-radius: 5px;
-  border-top-right-radius: 0;
-  border-bottom-right-radius: 0;
-}
-
-.covid-statistics__card {
-  padding-top: 10px;
-  padding-left: 10px;
-  box-sizing: border-box;
-  border-bottom: 1px solid #dcdcdc;
-}
-
-.covid-statistics__card-item {
-  padding: 3px;
-}
-
-.covid-statistics__card-item > span:first-of-type {
-  color: #888;
 }

@@ -8,9 +8,11 @@
     "dev": "rm -rf ./dist && webpack && node dist/server.js"
   },
   "dependencies": {
+    "chart.js": "^2.9.4",
     "express": "^4.17.1",
     "isomorphic-fetch": "^3.0.0",
     "react": "^17.0.1",
+    "react-chartjs-2": "^2.11.1",
     "react-dom": "^17.0.1",
     "react-router-dom": "^5.2.0",
     "react-select": "^3.1.0",

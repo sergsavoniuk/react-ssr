@@ -3,6 +3,7 @@ import { useParams, Link } from "react-router-dom";
 
 import { CovidStatisticsList } from "./CovidStatisticsList";
 import { CovidStatisticsPeriods } from "./CovidStatisticsPeriods";
+import { CovidStatisticsChart } from "./CovidStatisticsChart";
 
 import "./CovidStatistics.css";
 
@@ -37,11 +38,16 @@ export const CovidStatistics = ({ fetchInitialData, staticContext }) => {
             Covid-19 Statistics for {statistics.country}
           </h1>
           <div>
-            <CovidStatisticsPeriods
-              value={period}
-              onChange={(value) => setPeriod(value)}
-            />
-            <CovidStatisticsList data={statistics.data} />
+            <div>
+              <CovidStatisticsPeriods
+                value={period}
+                onChange={(value) => setPeriod(value)}
+              />
+              <CovidStatisticsList data={statistics.data} />
+            </div>
+            <div>
+              <CovidStatisticsChart data={statistics.data} />
+            </div>
           </div>
         </>
       )}
