@@ -1,5 +1,7 @@
 import fetch from "isomorphic-fetch";
 
+import { formatPeriod } from "../utils/date";
+
 export const Api = {
   fetchCountries() {
     return fetch("https://api.covid19api.com/countries")
@@ -16,8 +18,12 @@ export const Api = {
         return null;
       });
   },
-  fetchCovidStatisticsByCountry(country) {
-    return fetch(`https://api.covid19api.com/total/country/${country}`)
+  fetchCovidStatisticsByCountry(country, period) {
+    return fetch(
+      `https://api.covid19api.com/total/country/${country}${formatPeriod(
+        period
+      )}`
+    )
       .then((response) => response.json())
       .then((data) => {
         const result = {

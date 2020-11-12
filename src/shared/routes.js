@@ -6,14 +6,16 @@ import { Api } from "./api/api";
 export const routes = [
   {
     path: "/",
+    slice: "home",
     exact: true,
     component: Home,
     fetchInitialData: () => Api.fetchCountries(),
   },
   {
     path: "/statistics/:country",
+    slice: "statistics",
     component: CovidStatistics,
-    fetchInitialData: (path = "") =>
-      Api.fetchCovidStatisticsByCountry(path.split("/").pop()),
+    fetchInitialData: (path = "", period = "week") =>
+      Api.fetchCovidStatisticsByCountry(path.split("/").pop(), period),
   },
 ];

@@ -7,11 +7,6 @@ import serialize from "serialize-javascript";
 import { App } from "../shared/App";
 import { routes } from "../shared/routes";
 
-const paths = {
-  "/": "home",
-  "/statistics": "statistics",
-};
-
 const app = express();
 
 app.use(express.static("dist"));
@@ -25,15 +20,15 @@ app.get(["/", "/statistics/**"], (req, res, next) => {
 
   promise
     .then((data) => {
+      const initialData = {
+        [activeRoute.slice]: data,
+      };
+
       const html = ReactDOM.renderToString(
         <StaticRouter location={req.url} context={{ data }}>
           <App />
         </StaticRouter>
       );
-
-      const initialData = {
-        // [paths[req.path]]: data,
-      };
 
       res.send(`
         <!DOCTYPE html>
