@@ -1,3 +1,7 @@
+![Home Page](https://github.com/sergsavoniuk/react-ssr/blob/master/attachments/home_page.png)
+![Main Page - Desktop](https://github.com/sergsavoniuk/react-ssr/blob/master/attachments/main_page.png)
+![Main Page - Mobile](https://github.com/sergsavoniuk/react-ssr/blob/master/attachments/main_page_mobile.png)
+
 ## Introduction
 
 Demo application with server side rendering using React and React Router 5.
