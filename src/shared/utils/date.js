@@ -1,6 +1,6 @@
-export const formatPeriod = (value) => {
-  switch (value) {
-    case "week": {
+export const formatPeriod = ({ label, value }) => {
+  switch (label) {
+    case "1 week": {
       const current = new Date();
       const weekBefore = current.setDate(current.getDate() - 7);
 
@@ -8,7 +8,7 @@ export const formatPeriod = (value) => {
         new Date()
       )}`;
     }
-    case "month": {
+    case "1 month": {
       const current = new Date();
       const monthBefore = current.setMonth(current.getMonth() - 1);
 
@@ -16,7 +16,7 @@ export const formatPeriod = (value) => {
         new Date()
       )}`;
     }
-    case "3_months": {
+    case "3 months": {
       const current = new Date();
       const threeMonthsBefore = current.setMonth(current.getMonth() - 3);
 
@@ -24,7 +24,29 @@ export const formatPeriod = (value) => {
         new Date()
       )}`;
     }
-    case "all_time": {
+    case "choose month": {
+      const { month, year } = value;
+
+      const monthStart = new Date();
+      monthStart.setFullYear(year);
+      monthStart.setMonth(month);
+      monthStart.setDate(1);
+
+      let monthEnd = new Date(
+        monthStart.getFullYear(),
+        monthStart.getMonth() + 1,
+        0
+      );
+
+      const current = new Date();
+
+      if (monthEnd > current) {
+        monthEnd.setDate(current.getDate() - 1);
+      }
+
+      return `?from=${formatDate(monthStart)}&to=${formatDate(monthEnd)}`;
+    }
+    case "all time": {
       return "";
     }
   }

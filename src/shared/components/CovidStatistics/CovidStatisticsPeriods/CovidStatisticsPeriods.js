@@ -1,41 +1,31 @@
 import React from "react";
 
+import { MonthPicker } from "../../MonthPicker";
+
 import "./CovidStatisticsPeriods.css";
 
-const options = [
-  {
-    label: "1 week",
-    value: "week",
-  },
-  {
-    label: "1 month",
-    value: "month",
-  },
-  {
-    label: "3 months",
-    value: "3_months",
-  },
-  {
-    label: "all time",
-    value: "all_time",
-  },
-];
+const options = ["1 week", "1 month", "3 months", "all time", "choose month"];
 
 export const CovidStatisticsPeriods = ({ value: selectedValue, onChange }) => {
   return (
     <div className="covid-statistics-periods__container">
-      {options.map(({ label, value }) => (
-        <label key={value}>
-          {label}
+      {options.map((option) => (
+        <label key={option}>
+          {option}
           <input
             type="radio"
-            value={value}
-            checked={value === selectedValue}
-            onChange={(event) => onChange(event.target.value)}
+            value={option}
+            checked={option === selectedValue.label}
+            onChange={(event) => onChange({ label: event.target.value })}
           />
           <span className="checkmark" />
         </label>
       ))}
+      {selectedValue.label === "choose month" && (
+        <MonthPicker
+          onChange={(value) => onChange({ label: "choose month", value })}
+        />
+      )}
     </div>
   );
 };

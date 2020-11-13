@@ -15,7 +15,7 @@ export const routes = [
     path: "/statistics/:country",
     slice: "statistics",
     component: CovidStatistics,
-    fetchInitialData: (path = "", period = "week") =>
+    fetchInitialData: (path = "", period = { label: "1 week" }) =>
       Api.fetchCovidStatisticsByCountry(path.split("/").pop(), period),
   },
 ];

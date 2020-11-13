@@ -14,7 +14,7 @@ import "./CovidStatistics.css";
 export const CovidStatistics = ({ fetchInitialData, staticContext }) => {
   const { country } = useParams();
 
-  const [period, setPeriod] = useState("week");
+  const [period, setPeriod] = useState({ label: "1 week" });
   const [properties, setProperties] = useState(statisticsProperties);
   const [statistics, setStatistics] = useState(
     __isBrowser__ ? window.__INITIAL_DATA__?.statistics : staticContext.data
@@ -23,7 +23,10 @@ export const CovidStatistics = ({ fetchInitialData, staticContext }) => {
   const fetchNewStatistics = useRef(statistics ? false : true);
 
   useEffect(() => {
-    if (fetchNewStatistics.current === true) {
+    if (
+      fetchNewStatistics.current === true &&
+      (period.label === "choose month" ? period.value : true)
+    ) {
       fetchInitialData(country, period).then((statistics) => {
         setStatistics(statistics);
       });
